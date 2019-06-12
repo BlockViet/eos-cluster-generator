@@ -18,7 +18,7 @@ SYSTEM_ACCOUNTS = ['eosio.bpay',
 'eosio.vpay',
 'eosio.wrap',
 'eosio.rex']
-DOCKER_IMAGE = "trucnx/eos:1.8.0-rc2"
+DOCKER_IMAGE = "trucnx/eos:1.8.0-rc2-s"
 BIOS_DOCKER_COMPOSE = """
 version: "3"
 
@@ -30,7 +30,7 @@ services:
     container_name: nodeosd
     ports:
       - 8888:8888
-      - 0.0.0.0:9876:9876
+      - 9876:9876
     expose:
       - "9876"
     volumes:
