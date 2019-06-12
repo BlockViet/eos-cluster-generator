@@ -159,7 +159,8 @@ def generate_eosio_token():
     cmd += cmd_wrapper("set contract eosio.msig contracts/eosio.msig")
     cmd += cmd_wrapper("""push action eosio setpriv '{"account": "eosio.msig", "is_priv": 1}' -p eosio""")
     cmd += cmd_wrapper("set contract eosio contracts/eosio.system")
-    cmd += cmd_wrapper("set contract eosio.wrap contracts/eosio.sudo")
+    cmd += cmd_wrapper("""push action eosio init '[0,"4,EOS"]' -p eosio""")
+    cmd += cmd_wrapper("set contract eosio.wrap contracts/eosio.wrap")
     cmd += cmd_wrapper("""push action eosio setpriv '{"account": "eosio.wrap", "is_priv": 1}' -p eosio""")
     eosio_script.write(cmd)
     eosio_script.close()
@@ -178,8 +179,8 @@ def generate_sys_accounts():
 
 def generate_wallet_script():
     wallet_script = open(WALLET_SCRIPT, 'w')
-    wallet_script.write(cmd_wrapper("sh -c 'rm /opt/eosio/bin/data-dir/default.wallet' || true", CMD_PREFIX_KEOSD))
-    wallet_script.write(cmd_wrapper("sh -c 'rm ~/eosio-wallet/default.wallet' || true", CMD_PREFIX_KEOSD))
+    wallet_script.write(cmd_wrapper("sh -c 'rm -rf /opt/eosio/bin/data-dir/default.wallet' || true", CMD_PREFIX_KEOSD))
+    wallet_script.write(cmd_wrapper("sh -c 'rm -rf ~/eosio-wallet/default.wallet' || true", CMD_PREFIX_KEOSD))
     wallet_script.write(cmd_wrapper("cleos wallet create -n default --to-console > wallet_password", CMD_PREFIX_KEOSD))
     wallet_script.close()
 

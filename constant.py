@@ -16,8 +16,9 @@ SYSTEM_ACCOUNTS = ['eosio.bpay',
 'eosio.saving',
 'eosio.stake',
 'eosio.vpay',
-'eosio.wrap']
-DOCKER_IMAGE = "eoslaomao/eos:1.4.1-blacklist-plugin"
+'eosio.wrap',
+'eosio.rex']
+DOCKER_IMAGE = "trucnx/eos:1.8.0-rc2"
 BIOS_DOCKER_COMPOSE = """
 version: "3"
 
@@ -29,9 +30,11 @@ services:
     container_name: nodeosd
     ports:
       - 8888:8888
-      - 9876:9876
+      - 0.0.0.0:9876:9876
     expose:
       - "9876"
     volumes:
       - ./data/bios-node:/opt/eosio/bin/data-dir
+      - ./data/bios-node/protocol_features:/root/.local/share/eosio/nodeos/config/protocol_features
+      - ./contracts:/contracts
 """ % DOCKER_IMAGE

@@ -11,3 +11,5 @@
       - "{http_port}"
     volumes:
       - ./data/eos-bp{index}/:/opt/eosio/bin/data-dir
+      - ./data/eos-bp{index}/protocol_features:/root/.local/share/eosio/nodeos/config/protocol_features
+      - ./contracts:/contracts

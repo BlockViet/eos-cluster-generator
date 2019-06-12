@@ -4,3 +4,9 @@
 docker-compose.yml
 genesis.json
 *.pyc
+contracts/CMakeFiles/
+contracts/*/CMakeFiles/
+contracts/Makefile*
+contracts/*/Makefile*
+contracts/cmake_install.cmake*
+contracts/*/cmake_install.cmake*

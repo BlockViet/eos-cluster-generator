@@ -1,2 +1,2 @@
 docker-compose down
-rm -rf ./data
+sudo rm -rf ./data
